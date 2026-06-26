@@ -28,6 +28,10 @@ pub struct ProjectTerminalSettingsContent {
     ///
     /// Default: on
     pub detect_venv: Option<VenvSettings>,
+    /// Whether to load the resolved directory/direnv environment into the terminal.
+    ///
+    /// Default: true
+    pub load_directory_environment: Option<bool>,
     /// Regexes used to identify paths for hyperlink navigation.
     ///
     /// Default: [

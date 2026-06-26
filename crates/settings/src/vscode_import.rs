@@ -958,6 +958,7 @@ impl VsCodeSettings {
             working_directory: None,
             env,
             detect_venv: None,
+            load_directory_environment: None,
             path_hyperlink_regexes: None,
             path_hyperlink_timeout_ms: None,
         }

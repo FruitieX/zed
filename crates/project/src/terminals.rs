@@ -380,7 +380,11 @@ impl Project {
         let lang_registry = self.languages.clone();
         cx.spawn(async move |project, cx| {
             let shell_kind = ShellKind::new(&shell, path_style.is_windows());
-            let mut env = env_task.await.unwrap_or_default();
+            let mut env = if settings.load_directory_environment {
+                env_task.await.unwrap_or_default()
+            } else {
+                HashMap::default()
+            };
             env.extend(settings.env);
 
             let activation_script = maybe!(async {
@@ -546,7 +550,11 @@ impl Project {
         );
 
         cx.spawn(async move |project, cx| {
-            let mut env = env_task.await.unwrap_or_default();
+            let mut env = if settings.load_directory_environment {
+                env_task.await.unwrap_or_default()
+            } else {
+                HashMap::default()
+            };
             env.extend(settings.env);
 
             project.update(cx, move |_, cx| {
